@@ -65,7 +65,7 @@ farenheit.addEventListener('click', () => {
 
 async function getWeatherData() {
     try {
-        const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=da3579a2d883421889850848230409&q=${myLocation}&days=3&aqi=no&alerts=no`, { mode: 'cors' });
+        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=da3579a2d883421889850848230409&q=${myLocation}&days=3&aqi=no&alerts=no`, { mode: 'cors' });
         const weatherData = await response.json();
         return weatherData;
     } catch (err) {
@@ -176,6 +176,7 @@ async function getCurrentDataF() {
         console.log('Current F Error')
     }
 }
+
 
 async function forecastDayC() {
     try{ 
@@ -398,7 +399,7 @@ async function forecastHourF() {
         const weatherData = await getWeatherData();
         const forecastDays = weatherData.forecast.forecastday;
 
-        forecastDays.forEach((forecashourSectiontDay, dayIndex) => {
+        forecastDays.forEach((forecastDay, dayIndex) => {
             const dayctn = document.createElement('div');
 
             dayctn.classList.add(`hourDay${dayIndex}`);
@@ -411,13 +412,12 @@ async function forecastHourF() {
 
             const hourData = forecastDay.hour;
         
-        
             hourData.forEach((hour, hourIndex) => {
                 const time = hour.time;
                 const tempF = hour.temp_f;
                 const condition = hour.condition.text;
                 const conditionIcon = hour.condition.icon;
-    
+
                 // Create and append elements for hour information
                 const hourSection = document.createElement('div');
                 dayhourctn.appendChild(hourSection);
